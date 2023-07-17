@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LInk, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 export default function Protected(props) {

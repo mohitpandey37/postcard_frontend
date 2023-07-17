@@ -5,15 +5,12 @@ import {
     Text,
     Button,
     Flex,
-    Image,
-    Box,
-    Card, CardBody,
+
 } from '@chakra-ui/react';
 import React, { useState } from "react";
 
 export function CardLayout(props) {
     const [layout, setLayout] = useState(true);
-    console.log('props', props)
     return (
         <>
             {layout ? <CardFrontLayout value={props} /> : <CardBackLayout value={props} />}
