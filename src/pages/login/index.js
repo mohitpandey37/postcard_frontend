@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Flex,
     Box,
@@ -26,8 +26,17 @@ export default function LoginForm() {
         if (data[`${key}`] !== "") {
             localStorage.setItem(key, data[key]);
         }
-    }       
+    } 
    }
+
+//   useEffect(()=>{
+//     let login = localStorage.getItem("login");
+//     if(!login){
+//         navigate('/' );
+//     } else {
+//         navigate('/postcard');
+//     }
+//   })
 
     const formik = useFormik({
         initialValues: {
@@ -47,7 +56,7 @@ export default function LoginForm() {
                     headers: { 'Content-Type': "application/json" },
                 })
                 if (response.data.status === true) {
-                    updateSession(response.data.data)
+                    updateSession({...response.data.data, login: true})
                     toast.success(response.data.message);
                 } else {
                     toast.error(response.data.message);

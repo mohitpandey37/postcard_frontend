@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import LoginPage from "./pages/login/index";
 import Postcard from "./pages/postcard/index";
 import Preview from "./pages/postcard/prevew";
+import Protected from "./routes/protected";
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="postcard">
-            <Route path="" element={<Postcard />} />
-            <Route path="preview/:id" element={<Preview />} />
+            <Route path="" element={<Protected Component={Postcard}/>} />
+            <Route path="preview/:id" element={<Protected Component={Preview}/>} />
           </Route>
         </Routes>
       </Router>
