@@ -47,7 +47,6 @@ export default function PostCard() {
 
         onSubmit: async (values, actions) => {
             try {
-
                 let response = await axios.post('post_card/create',
                     JSON.stringify(values), {
                     headers: headers,

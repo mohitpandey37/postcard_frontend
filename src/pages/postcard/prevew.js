@@ -3,11 +3,6 @@ import { CardLayout } from '../../components/card';
 import { useLocation } from 'react-router-dom';
 import axios from '../../api/axios';
 import { ToastContainer, toast } from 'react-toastify';
-let auth_token = localStorage.getItem('auth_token')
-const headers = {
-    'Content-Type': "application/json",
-    "Authorization": `Bearer ${auth_token}`
-}
 
 
 export default function Preview() {
@@ -15,10 +10,14 @@ export default function Preview() {
     const location = useLocation();
     const path = location.pathname.split("/");
     const postId = path[path.length - 1];
+    const [headers, setHeaders] = useState({
+        "Content-Type": "application/json",
+        "Authorization": ""
+    });
 
     async function getPostData() {
         try {
-            let response = await axios.get(`post_card/getbyid/${postId}`, {
+            let response = await axios.get(`post_card/get_data/${postId}`, {
                 headers: headers
             })
             if (response.data.status === true) {
@@ -35,6 +34,11 @@ export default function Preview() {
         }
     }
     useEffect(() => {
+        let auth_token = localStorage.getItem('auth_token')
+        setHeaders((prev) => ({
+            ...prev,
+            Authorization: `Bearer ${auth_token}`
+        }))
         getPostData()
     }, [])
 
