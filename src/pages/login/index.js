@@ -59,10 +59,13 @@ export default function LoginForm() {
                     updateSession({...response.data.data, login: true})
                     toast.success(response.data.message);
                 } else {
+                    console.log('response',response.data.message)
                     toast.error(response.data.message);
                 }
                 actions.resetForm();
-                navigate('/postcard');
+                setTimeout(() => {
+                    navigate('/postcard');
+                }, 1000);
 
             } catch (error) {
                 console.log("error", error)

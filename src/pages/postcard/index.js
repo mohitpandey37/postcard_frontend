@@ -21,14 +21,11 @@ import axios from "../../api/axios";
 import TableComponent from "../../components/table";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-let auth_token = localStorage.getItem('auth_token')
-const headers = {
-    'Content-Type': "application/json",
-    "Authorization": `Bearer ${auth_token}`
-}
+
 
 export default function PostCard() {
     const [posts, setPosts] = useState([])
+    var headers;
     const formik = useFormik({
         initialValues: {
             recipient: "",
@@ -51,6 +48,7 @@ export default function PostCard() {
 
         onSubmit: async (values, actions) => {
             try {
+
                 let response = await axios.post('post_card/create',
                     JSON.stringify(values), {
                     headers: headers,
@@ -88,7 +86,12 @@ export default function PostCard() {
     }
 
     useEffect(() => {
-        getpostdata()
+        let auth_token = localStorage.getItem('auth_token')
+            headers = {
+                'Content-Type': "application/json",
+                "Authorization": `Bearer ${auth_token}`
+            }
+            getpostdata();
     }, [])
 
 
