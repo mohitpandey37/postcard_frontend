@@ -17,7 +17,6 @@ import * as Yup from "yup";
 import { CardLayout } from "../../components/card/index";
 import Editor from "../../components/editor/index";
 import axios from "../../api/axios";
-// import 'quill/dist/quill.snow.css';
 import TableComponent from "../../components/table";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
